@@ -5,6 +5,11 @@ variable "project" {
   default = "krafty"
 }
 
+variable "environment" {
+  type = string
+
+}
+
 #VPC
 
 variable "vpc_cidr" {
@@ -27,5 +32,21 @@ variable "availability_zones" {
   type        = list(string)
 }
 
+#EC2
 
+variable "enable_ec2" {
+  description = "Enable EC2 instance"
+  type        = bool
+  default     = true
+}
+
+variable "key_name" {
+  description = "value of the key pair"
+}
+
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+
+}
 
