@@ -1,9 +1,13 @@
 variable "project" {
-  description = "The project name"
+  description = "my project"
 }
 
 variable "environment" {
   description = "The environment name"
+}
+
+variable "region" {
+  description = "The AWS region name"
 }
 
 variable "vpc_id" {
