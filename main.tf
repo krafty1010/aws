@@ -9,12 +9,12 @@ module "vpc" {
 }
 
 module "eks" {
-  count              = var.enable_eks ? 1 : 0
-  source             = "./modules/eks"
-  project            = var.project
-  region             = var.region
-  environment        = var.environment
-  vpc            = module.vpc.vpc
-  private_subnets = module.vpc.private_subnets
+  count             = var.enable_eks ? 1 : 0
+  source            = "./modules/eks"
+  project           = var.project
+  region            = var.region
+  environment       = var.environment
+  vpc               = module.vpc.vpc
+  private_subnets   = module.vpc.private_subnets
   eks_instance_type = var.eks_instance_type
 }

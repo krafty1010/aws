@@ -1,17 +1,17 @@
 resource "aws_cloudwatch_log_group" "eks_logs" {
-  name              = "/aws/eks/${project}"
+  name              = "/aws/eks/${var.project}"
   retention_in_days = 30
 }
 
 resource "aws_iam_policy" "eks_logging" {
   name        = "EKSLoggingPolicy"
   description = "IAM policy for EKS CloudWatch"
-  policy      = jsonencode({
+  policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents",

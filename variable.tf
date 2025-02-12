@@ -53,5 +53,3 @@ variable "eks_instance_type" {
   type        = string
   default     = false
 }
-
-
