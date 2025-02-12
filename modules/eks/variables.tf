@@ -10,12 +10,6 @@ variable "region" {
   description = "The AWS region name"
 }
 
-variable "vpc_id" {
-}
-
-variable "private_subnet_ids" {
-}
-
 locals {
   resource_prefix = "${var.project}-${var.environment}"
 
@@ -29,4 +23,15 @@ locals {
 resource "random_string" "suffix" {
   length  = 8
   special = false
+}
+
+variable "vpc" {
+}
+
+variable "private_subnets" {
+}
+
+variable "eks_instance_type" {
+  description = "EKS instance type"
+  type        = string
 }

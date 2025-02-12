@@ -1,27 +1,20 @@
 module "vpc" {
   source               = "./modules/vpc"
+  project              = var.project
+  region               = var.region
+  environment          = var.environment
   vpc_cidr             = var.vpc_cidr
   private_subnet_cidrs = var.subnet_cidrs
   availability_zones   = var.availability_zones
-  region               = var.region
-  project              = var.project
 }
 
-/*
 module "eks" {
-  source  = "./modules/eks"
-  project = var.project
-  #key_name = var.key_name
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnet_ids
-}
-*/
-
-module "ec2" {
-  count       = var.enable_ec2 ? 1 : 0
-  source      = "./modules/ec2"
-  project     = var.project
-  environment = var.environment
-  key_name    = var.key_name
-
+  count              = var.enable_eks ? 1 : 0
+  source             = "./modules/eks"
+  project            = var.project
+  region             = var.region
+  environment        = var.environment
+  vpc            = module.vpc.vpc
+  private_subnets = module.vpc.private_subnets
+  eks_instance_type = var.eks_instance_type
 }

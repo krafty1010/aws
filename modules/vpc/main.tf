@@ -4,11 +4,10 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
-    Name = "${var.project}-vpc"
+    Name = "${local.tags.name}"
   }
 }
 
-# Create private subnets
 resource "aws_subnet" "private" {
   count = length(var.private_subnet_cidrs)
 
@@ -22,7 +21,7 @@ resource "aws_subnet" "private" {
   }
 }
 
-# (Optional) Route table for private subnets (no NAT Gateway or IGW)
+#optional
 resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
   tags = {
@@ -30,7 +29,6 @@ resource "aws_route_table" "private" {
   }
 }
 
-# Associate private subnets with the route table
 resource "aws_route_table_association" "private" {
   count          = length(var.private_subnet_cidrs)
   subnet_id      = aws_subnet.private[count.index].id

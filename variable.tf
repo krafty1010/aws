@@ -7,10 +7,15 @@ variable "project" {
 
 variable "environment" {
   type = string
-
 }
 
-#VPC
+variable "region" {
+  description = "AWS region"
+  type        = string
+}
+
+
+#VPC module
 
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
@@ -22,17 +27,12 @@ variable "subnet_cidrs" {
   type        = list(string)
 }
 
-variable "region" {
-  description = "AWS region"
-  type        = string
-}
-
 variable "availability_zones" {
   description = "List of availability zones"
   type        = list(string)
 }
 
-#EC2
+#EC2 module
 
 variable "enable_ec2" {
   description = "Enable EC2 instance"
@@ -40,13 +40,18 @@ variable "enable_ec2" {
   default     = true
 }
 
-variable "key_name" {
-  description = "value of the key pair"
+#EKS module
+
+variable "enable_eks" {
+  description = "Enable EKS instance"
+  type        = bool
+  default     = false
 }
 
-variable "instance_type" {
-  description = "EC2 instance type"
+variable "eks_instance_type" {
+  description = "Enable EKS instance"
   type        = string
-
+  default     = false
 }
+
 

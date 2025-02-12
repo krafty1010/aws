@@ -15,17 +15,9 @@ variable "region" {
 }
 
 variable "project" {
-  description = "The project name"
 }
 
 variable "environment" {
-  description = "The environment name"
-}
-
-variable "vpc_id" {
-}
-
-variable "private_subnet_ids" {
 }
 
 locals {
